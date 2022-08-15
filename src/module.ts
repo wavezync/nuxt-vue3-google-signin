@@ -1,15 +1,11 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { defineNuxtModule, addPlugin, addComponent } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, addComponent, useLogger } from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
 import defu from 'defu'
-import pkg from '../package.json'
+import { version } from '../package.json'
 
 const MODULE_NAME = 'nuxt-vue3-google-signin'
-
-function toModuleError (message: string) {
-  return `[${MODULE_NAME}]: ${message}`
-}
 
 export interface ModuleOptions {
   /**
@@ -29,14 +25,14 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt: '^3.0.0',
       bridge: false
     },
-    version: pkg.version
+    version
   },
   defaults: {
     clientId: ''
   },
   setup (options, nuxt) {
     if (options.clientId.trim().length === 0) {
-      throw new Error(toModuleError('clientId is required'))
+      useLogger(MODULE_NAME).error('clientId is required')
     }
 
     nuxt.options.runtimeConfig.public.googleSignIn = defu(nuxt.options.runtimeConfig.googleSignIn, {
