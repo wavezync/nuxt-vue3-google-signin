@@ -19,6 +19,7 @@ jobs:
       - name: npm install, build, lint and test
         run: |
           npm ci
+          npm run dev:prepare
           npm run prepack
         env:
           CI: true
