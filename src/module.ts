@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin, addComponent, useLogger } from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
 import defu from 'defu'
-import { version } from '../package.json'
 
 const MODULE_NAME = 'nuxt-vue3-google-signin'
 
@@ -24,8 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
     compatibility: {
       nuxt: '^3.0.0',
       bridge: false
-    },
-    version
+    }
   },
   defaults: {
     clientId: ''
