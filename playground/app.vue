@@ -12,9 +12,4 @@ const onError = resp => console.error(resp)
 </script>
 
 <style>
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 </style>

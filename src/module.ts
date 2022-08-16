@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin, addComponent, useLogger } from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
-import defu from 'defu'
+import { defu } from 'defu'
 
 const MODULE_NAME = 'nuxt-vue3-google-signin'
 
