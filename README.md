@@ -2,6 +2,8 @@
 
 Nuxt Module for [vue3-google-signin](https://vue3-google-signin.syetalabs.io/)
 
+Checkout [documentation](https://vue3-google-signin.syetalabs.io/) for more.
+
 ## Development
 
 - Run `npm run dev:prepare` to generate type stubs.
