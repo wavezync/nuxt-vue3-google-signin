@@ -2,18 +2,10 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { defineNuxtModule, addPlugin, addComponent, useLogger } from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
-import { defu } from 'defu'
 
 const MODULE_NAME = 'nuxt-vue3-google-signin'
 
 export interface ModuleOptions {
-  /**
-   * Client ID obtained from Google
-   *
-   * @type {string}
-   * @memberof ModuleOptions
-   */
-  clientId: string;
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -25,17 +17,11 @@ export default defineNuxtModule<ModuleOptions>({
       bridge: false
     }
   },
-  defaults: {
-    clientId: ''
-  },
-  setup (options, nuxt) {
-    if (options.clientId.trim().length === 0) {
+  defaults: {},
+  setup (_options, nuxt) {
+    if (nuxt.options.runtimeConfig.public?.googleSignIn?.clientId.trim().length === 0) {
       useLogger(MODULE_NAME).error('clientId is required')
     }
-
-    nuxt.options.runtimeConfig.public.googleSignIn = defu(nuxt.options.runtimeConfig.googleSignIn, {
-      clientId: options.clientId
-    })
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
