@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt/config'
 import GoogleSignIn from '..'
 
 export default defineNuxtConfig({

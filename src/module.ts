@@ -4,7 +4,8 @@ import {
   defineNuxtModule,
   addPlugin,
   addComponent,
-  useLogger
+  useLogger,
+  addImportsSources
 } from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
 
@@ -25,22 +26,22 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'vue3-google-signin',
     configKey: 'googleSignIn',
     compatibility: {
-      nuxt: '^3.0.0',
+      nuxt: '^3',
       bridge: false
     }
   },
   defaults: {
     clientId: ''
   },
-  setup (_options, nuxt) {
-    if (isEmpty(nuxt.options?.googleSignIn?.clientId)) {
+  setup (options, nuxt) {
+    if (isEmpty(options.clientId)) {
       useLogger(MODULE_NAME).error(
         'provide googleSignIn.clientId in appConfig'
       )
     }
 
     nuxt.options.runtimeConfig.public.googleSignIn = {
-      clientId: nuxt.options?.googleSignIn?.clientId
+      clientId: options.clientId
     }
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
@@ -57,14 +58,10 @@ export default defineNuxtModule<ModuleOptions>({
     )
 
     // Add auto-imported composables
-    nuxt.hook('autoImports:sources', (presets) => {
-      presets.push(
-        defineUnimportPreset({
-          from: 'vue3-google-signin',
-          imports: [...GsiComposables]
-        })
-      )
-    })
+    addImportsSources(defineUnimportPreset({
+      from: 'vue3-google-signin',
+      imports: [...GsiComposables]
+    }))
   }
 })
 

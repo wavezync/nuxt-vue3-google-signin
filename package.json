@@ -64,7 +64,7 @@
     "vue3 google identity"
   ],
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.8",
+    "@nuxt/kit": "^3.0.0-rc.11",
     "unimport": "^0.6.7",
     "vue3-google-signin": "^1.0.2"
   },
@@ -72,6 +72,6 @@
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "latest",
-    "nuxt": "^3.0.0-rc.8"
+    "nuxt": "^3.0.0-rc.11"
   }
 }
