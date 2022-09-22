@@ -1,11 +1,23 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
-import { defineNuxtModule, addPlugin, addComponent, useLogger } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  addPlugin,
+  addComponent,
+  useLogger
+} from '@nuxt/kit'
 import { defineUnimportPreset } from 'unimport'
 
 const MODULE_NAME = 'nuxt-vue3-google-signin'
 
 export interface ModuleOptions {
+  /**
+   * Client ID obtained from Google Cloud Console
+   *
+   * @type {string}
+   * @memberof ModuleOptions
+   */
+  clientId: string;
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -17,10 +29,18 @@ export default defineNuxtModule<ModuleOptions>({
       bridge: false
     }
   },
-  defaults: {},
+  defaults: {
+    clientId: ''
+  },
   setup (_options, nuxt) {
-    if (nuxt.options.runtimeConfig.public?.googleSignIn?.clientId.trim().length === 0) {
-      useLogger(MODULE_NAME).error('clientId is required')
+    if (isEmpty(nuxt.options?.googleSignIn?.clientId)) {
+      useLogger(MODULE_NAME).error(
+        'provide googleSignIn.clientId in appConfig'
+      )
+    }
+
+    nuxt.options.runtimeConfig.public.googleSignIn = {
+      clientId: nuxt.options?.googleSignIn?.clientId
     }
 
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
@@ -48,9 +68,14 @@ export default defineNuxtModule<ModuleOptions>({
   }
 })
 
-const GsiBuiltinComponents = [
-  'GoogleSignInButton'
-]
+function isEmpty (value: string | undefined): boolean {
+  if (!value) {
+    return true
+  }
+  return value.trim().length === 0
+}
+
+const GsiBuiltinComponents = ['GoogleSignInButton']
 
 const GsiComposables = [
   'useTokenClient',
