@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/syetalabs/nuxt-vue3-google-signin.git"
+    "url": "git+https://github.com/wavezync/nuxt-vue3-google-signin.git"
   },
   "author": {
     "name": "Kasun Vithanage",
-    "email": "kasun@syetalabs.io",
+    "email": "kasun@wavezync.com",
     "url": "https://kasvith.me"
   },
-  "homepage": "https://vue3-google-signin.syetalabs.io",
+  "homepage": "https://vue3-google-signin.wavezync.io",
   "bugs": {
-    "url": "https://github.com/syetalabs/nuxt-vue3-google-signin/issues"
+    "url": "https://github.com/wavezync/nuxt-vue3-google-signin/issues"
   },
   "exports": {
     ".": {
