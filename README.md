@@ -1,8 +1,8 @@
 # nuxt-vue3-google-signin
 
-[![Build](https://github.com/syetalabs/nuxt-vue3-google-signin/actions/workflows/build.yaml/badge.svg)](https://github.com/syetalabs/nuxt-vue3-google-signin/actions/workflows/build.yaml) [![npm](https://img.shields.io/npm/v/nuxt-vue3-google-signin)](https://www.npmjs.com/package/nuxt-vue3-google-signin) ![npm](https://img.shields.io/npm/dw/nuxt-vue3-google-signin) ![NPM](https://img.shields.io/npm/l/nuxt-vue3-google-signin) [![Docs](https://img.shields.io/badge/docs-Read%20Now-green)](https://vue3-google-signin.syetalabs.io/)
+[![Build](https://github.com/wavezync/nuxt-vue3-google-signin/actions/workflows/build.yaml/badge.svg)](https://github.com/wavezync/nuxt-vue3-google-signin/actions/workflows/build.yaml) [![npm](https://img.shields.io/npm/v/nuxt-vue3-google-signin)](https://www.npmjs.com/package/nuxt-vue3-google-signin) ![npm](https://img.shields.io/npm/dw/nuxt-vue3-google-signin) ![NPM](https://img.shields.io/npm/l/nuxt-vue3-google-signin) [![Docs](https://img.shields.io/badge/docs-Read%20Now-green)](https://vue3-google-signin.wavezync.com/)
 
-Nuxt Module for [vue3-google-signin](https://vue3-google-signin.syetalabs.io/)
+Nuxt Module for [vue3-google-signin](https://vue3-google-signin.wavezync.com/)
 
 ## Usage
 
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 })
 ```
 
-Checkout [documentation](https://vue3-google-signin.syetalabs.io/) for more.
+Checkout [documentation](https://vue3-google-signin.wavezync.io/) for more.
 
 ## Development
 
