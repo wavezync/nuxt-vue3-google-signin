@@ -43,7 +43,7 @@ export default defineNuxtConfig({
 })
 ```
 
-Checkout [documentation](https://vue3-google-signin.wavezync.io/) for more.
+Checkout [documentation](https://vue3-google-signin.wavezync.com/) for more.
 
 ## Development
 
