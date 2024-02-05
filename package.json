@@ -1,6 +1,6 @@
 {
   "name": "nuxt-vue3-google-signin",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "lint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">=16.0.0"
   },
   "repository": {
     "type": "git",
@@ -67,13 +67,13 @@
     "vue3 google identity"
   ],
   "dependencies": {
-    "@nuxt/kit": "^3.8.1",
-    "unimport": "^3.4.0",
+    "@nuxt/kit": "^3.10.0",
+    "unimport": "^3.7.1",
     "vue3-google-signin": "latest"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
-    "@nuxt/schema": "^3.8.1",
+    "@nuxt/schema": "^3.10.0",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "latest",
     "nuxt": "^3"
