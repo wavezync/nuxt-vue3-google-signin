@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run lint
       - run: npm run dev:prepare
+      - run: npm run lint
       - run: npm run prepack
 
   publish-npm:
