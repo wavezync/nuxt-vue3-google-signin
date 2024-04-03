@@ -8,20 +8,6 @@ Nuxt Module for [vue3-google-signin](https://vue3-google-signin.wavezync.com/)
 
 ### Install package
 
-- With **NPM**
-
-```bash
-npx nuxi@latest module add nuxt-vue3-google-signin
-```
-
-- With **Yarn**
-
-```bash
-npx nuxi@latest module add nuxt-vue3-google-signin
-```
-
-- With **PNPM**
-
 ```bash
 npx nuxi@latest module add nuxt-vue3-google-signin
 ```
