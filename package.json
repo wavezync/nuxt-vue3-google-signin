@@ -68,6 +68,7 @@
   ],
   "dependencies": {
     "@nuxt/kit": "^3.10.0",
+    "defu": "^6.1.4",
     "unimport": "^3.7.1",
     "vue3-google-signin": "latest"
   },
