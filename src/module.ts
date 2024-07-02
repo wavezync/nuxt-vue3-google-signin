@@ -26,7 +26,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'vue3-google-signin',
     configKey: 'googleSignIn',
     compatibility: {
-      nuxt: '^3',
+      nuxt: '>=3',
       bridge: false
     }
   },
