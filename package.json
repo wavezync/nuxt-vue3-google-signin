@@ -1,10 +1,10 @@
 {
   "name": "nuxt-vue3-google-signin",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "prepack": "nuxt-module-build",
+    "prepack": "nuxt-module-build build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
@@ -30,11 +30,11 @@
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "require": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
   "files": [
     "dist"
   ],
@@ -43,7 +43,8 @@
     "nuxt-module",
     "nuxt module",
     "nuxt3",
-    "nuxt3 google signin",
+    "nuxt4",
+    "nuxt3 nuxt4 google signin",
     "vue3 google signin",
     "vue3 google oauth2",
     "vue3 google oauth",
@@ -74,9 +75,9 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
-    "@nuxt/schema": "^3.10.0",
+    "@nuxt/schema": "3.10.0 || ^4.1.1",
     "@nuxtjs/eslint-config-typescript": "latest",
     "eslint": "latest",
-    "nuxt": "^3"
+    "nuxt": "^3 || ^4"
   }
 }
