@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "prepack": "nuxt-module-build build",
-    "dev": "nuxi dev playground",
+    "dev": "npm run dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
-    "lint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -66,16 +69,23 @@
     "vue3 google identity"
   ],
   "dependencies": {
-    "@nuxt/kit": "^3.10.0",
+    "@nuxt/kit": "^4.1.2",
     "defu": "^6.1.4",
-    "unimport": "^3.7.1",
+    "unimport": "^5.3.0",
     "vue3-google-signin": "latest"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^2.6.3",
+    "@nuxt/eslint-config": "^1.9.0",
     "@nuxt/module-builder": "latest",
-    "@nuxt/schema": "3.10.0 || ^4.1.1",
-    "@nuxtjs/eslint-config-typescript": "latest",
-    "eslint": "latest",
-    "nuxt": "^3 || ^4"
+    "@nuxt/schema": "^4.1.2",
+    "@nuxt/test-utils": "^3.19.2",
+    "@types/node": "latest",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.35.0",
+    "nuxt": "^4.1.2",
+    "typescript": "~5.9.2",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.0.6"
   }
 }

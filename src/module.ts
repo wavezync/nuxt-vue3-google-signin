@@ -1,11 +1,11 @@
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   addComponent,
   addImportsSources,
   addPlugin,
   defineNuxtModule,
-  useLogger
+  useLogger,
 } from '@nuxt/kit'
 import { defu } from 'defu'
 import { defineUnimportPreset } from 'unimport'
@@ -19,7 +19,7 @@ export interface ModuleOptions {
    * @type {string}
    * @memberof ModuleOptions
    */
-  clientId: string;
+  clientId: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -27,21 +27,21 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'vue3-google-signin',
     configKey: 'googleSignIn',
     compatibility: {
-      nuxt: '>=3.0.0 <5.0.0'
-    }
+      nuxt: '>=3.0.0 <5.0.0',
+    },
   },
   defaults: {
-    clientId: ''
+    clientId: '',
   },
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     nuxt.options.runtimeConfig.public.googleSignIn = defu(
       nuxt.options.runtimeConfig.public.googleSignIn,
-      { clientId: options.clientId }
+      { clientId: options.clientId },
     )
 
     if (isEmpty(nuxt.options.runtimeConfig.public.googleSignIn.clientId)) {
       useLogger(MODULE_NAME).error(
-        'provide googleSignIn.clientId in appConfig'
+        'provide googleSignIn.clientId in appConfig',
       )
     }
 
@@ -54,19 +54,19 @@ export default defineNuxtModule<ModuleOptions>({
       addComponent({
         name,
         export: name,
-        filePath: 'vue3-google-signin'
-      })
+        filePath: 'vue3-google-signin',
+      }),
     )
 
     // Add auto-imported composables
     addImportsSources(defineUnimportPreset({
       from: 'vue3-google-signin',
-      imports: [...GsiComposables]
+      imports: [...GsiComposables],
     }))
-  }
+  },
 })
 
-function isEmpty (value: string | undefined): boolean {
+function isEmpty(value: string | undefined): boolean {
   if (!value) {
     return true
   }
@@ -79,5 +79,5 @@ const GsiComposables = [
   'useTokenClient',
   'useCodeClient',
   'useGsiScript',
-  'useOneTap'
+  'useOneTap',
 ]
