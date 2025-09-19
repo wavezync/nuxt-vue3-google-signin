@@ -40,7 +40,7 @@ export default defineNuxtModule<ModuleOptions>({
     )
 
     if (isEmpty(nuxt.options.runtimeConfig.public.googleSignIn.clientId)) {
-      useLogger(MODULE_NAME).error(
+      useLogger(MODULE_NAME).warn(
         'provide googleSignIn.clientId in appConfig',
       )
     }
