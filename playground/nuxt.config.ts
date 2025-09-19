@@ -3,10 +3,10 @@ import GoogleSignIn from '..'
 
 export default defineNuxtConfig({
   modules: [
-    GoogleSignIn
+    GoogleSignIn,
   ],
-  googleSignIn: {
-    clientId: process.env.NUXT_PUBLIC_GOOGLE_CLIENT_ID
-  },
   devtools: { enabled: true },
+  googleSignIn: {
+    clientId: process.env.NUXT_PUBLIC_GOOGLE_CLIENT_ID,
+  },
 })
