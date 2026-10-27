@@ -173,7 +173,7 @@ importers:
         specifier: ^6.1.7
         version: 6.1.7
       vue3-google-signin:
-        specifier: latest
+        specifier: ^3.0.0
         version: 3.0.0(vue@3.5.44(typescript@5.9.3))
     devDependencies:
       '@nuxt/module-builder':

@@ -63,7 +63,7 @@
   "dependencies": {
     "@nuxt/kit": "^4.6.2",
     "defu": "^6.1.7",
-    "vue3-google-signin": "latest"
+    "vue3-google-signin": "^3.0.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^1.0.3",
