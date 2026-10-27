@@ -84,9 +84,12 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.googleSignIn,
       { clientId: options.clientId, locale: options.locale },
     ));
-    if (!config.clientId?.trim()) {
+    if (
+      !config.clientId?.trim() &&
+      !process.env.NUXT_PUBLIC_GOOGLE_SIGN_IN_CLIENT_ID
+    ) {
       useLogger("nuxt-vue3-google-signin").warn(
-        "provide googleSignIn.clientId in appConfig",
+        "No client ID: set googleSignIn.clientId, or NUXT_PUBLIC_GOOGLE_SIGN_IN_CLIENT_ID when the server starts",
       );
     }
     addPlugin(resolve("./runtime/plugin"));
