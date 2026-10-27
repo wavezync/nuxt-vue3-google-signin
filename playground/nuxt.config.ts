@@ -1,12 +1,6 @@
-import { defineNuxtConfig } from 'nuxt/config'
-import GoogleSignIn from '..'
-
+// Set NUXT_PUBLIC_GOOGLE_SIGN_IN_CLIENT_ID in playground/.env (see .env.example)
 export default defineNuxtConfig({
-  modules: [
-    GoogleSignIn,
-  ],
+  modules: ["nuxt-vue3-google-signin"],
   devtools: { enabled: true },
-  googleSignIn: {
-    clientId: process.env.NUXT_PUBLIC_GOOGLE_CLIENT_ID,
-  },
-})
+  compatibilityDate: "2026-10-01",
+});
