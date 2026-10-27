@@ -8,6 +8,10 @@ import {
 } from "@nuxt/kit";
 import { defu } from "defu";
 
+// Types such as CredentialResponse, importable from the module even when the
+// app can't import vue3-google-signin itself (pnpm)
+export type * from "vue3-google-signin";
+
 const MODULE_NAME = "nuxt-vue3-google-signin";
 
 export interface ModuleOptions {
@@ -55,9 +59,18 @@ export default defineNuxtModule<ModuleOptions>({
       filePath: runtime,
     });
     addImports(
-      ["useCodeClient", "useGsiScript", "useOneTap", "useTokenClient"].map(
-        (name) => ({ name, from: runtime }),
-      ),
+      [
+        "useCodeClient",
+        "useGsiScript",
+        "useOneTap",
+        "useTokenClient",
+        "decodeCredential",
+        "idRevoke",
+        "hasGrantedAllScopes",
+        "hasGrantedAnyScopes",
+        "revokeAccessToken",
+        "buildCodeRequestRedirectUrl",
+      ].map((name) => ({ name, from: runtime })),
     );
   },
 });
