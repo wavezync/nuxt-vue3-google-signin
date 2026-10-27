@@ -12,39 +12,45 @@ import { defu } from "defu";
 // app can't import vue3-google-signin itself (pnpm)
 export type * from "vue3-google-signin";
 
-const MODULE_NAME = "nuxt-vue3-google-signin";
-
 export interface ModuleOptions {
   /**
-   * Client ID obtained from Google Cloud Console
+   * Client ID obtained from the Google Cloud Console. Lands in
+   * `runtimeConfig.public.googleSignIn.clientId`, so the
+   * `NUXT_PUBLIC_GOOGLE_SIGN_IN_CLIENT_ID` env variable overrides it at runtime.
    *
-   * @type {string}
-   * @memberof ModuleOptions
+   * @see https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid
    */
-  clientId: string;
+  clientId?: string;
+
+  /**
+   * Language to load Google's script in, such as `en` or `fr`. Defaults to the
+   * browser's language.
+   */
+  locale?: string;
+
+  /**
+   * Install the vue3-google-signin plugin. Set to `false` to install it in your
+   * own Nuxt plugin instead, for example to pick a client ID per request.
+   * Components and composables stay auto-imported.
+   *
+   * @default true
+   */
+  plugin?: boolean;
 }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "vue3-google-signin",
+    name: "nuxt-vue3-google-signin",
     configKey: "googleSignIn",
     compatibility: {
-      nuxt: ">=3.0.0 <5.0.0",
+      nuxt: ">=3.0.0",
     },
   },
   defaults: {
     clientId: "",
+    plugin: true,
   },
   setup(options, nuxt) {
-    nuxt.options.runtimeConfig.public.googleSignIn = defu(
-      nuxt.options.runtimeConfig.public.googleSignIn,
-      { clientId: options.clientId },
-    );
-
-    if (isEmpty(nuxt.options.runtimeConfig.public.googleSignIn.clientId)) {
-      useLogger(MODULE_NAME).warn("provide googleSignIn.clientId in appConfig");
-    }
-
     const { resolve } = createResolver(import.meta.url);
     // Everything imports the library through the module's runtime files, never
     // from app code. Imported from the app, it didn't resolve under strict
@@ -52,7 +58,6 @@ export default defineNuxtModule<ModuleOptions>({
     // composables lost the plugin's client ID (#11).
     const runtime = resolve("./runtime/index");
 
-    addPlugin(resolve("./runtime/plugin"));
     addComponent({
       name: "GoogleSignInButton",
       export: "GoogleSignInButton",
@@ -72,12 +77,24 @@ export default defineNuxtModule<ModuleOptions>({
         "buildCodeRequestRedirectUrl",
       ].map((name) => ({ name, from: runtime })),
     );
+
+    if (!options.plugin) return;
+
+    const config = (nuxt.options.runtimeConfig.public.googleSignIn = defu(
+      nuxt.options.runtimeConfig.public.googleSignIn,
+      { clientId: options.clientId, locale: options.locale },
+    ));
+    if (!config.clientId?.trim()) {
+      useLogger("nuxt-vue3-google-signin").warn(
+        "provide googleSignIn.clientId in appConfig",
+      );
+    }
+    addPlugin(resolve("./runtime/plugin"));
   },
 });
 
-function isEmpty(value: string | undefined): boolean {
-  if (!value) {
-    return true;
+declare module "@nuxt/schema" {
+  interface PublicRuntimeConfig {
+    googleSignIn: Pick<ModuleOptions, "clientId" | "locale">;
   }
-  return value.trim().length === 0;
 }
