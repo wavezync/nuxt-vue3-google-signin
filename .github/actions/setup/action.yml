@@ -1,0 +1,25 @@
+name: Setup
+description: Install pnpm and Node.js (from .node-version), then the workspace's dependencies
+
+inputs:
+  registry-url:
+    description: npm registry to authenticate against, for publishing
+    required: false
+    default: ""
+  cache:
+    description: Package manager whose store to cache, or "" for none (release builds)
+    required: false
+    default: pnpm
+
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v6
+    - uses: actions/setup-node@v7
+      with:
+        node-version-file: .node-version
+        cache: ${{ inputs.cache }}
+        registry-url: ${{ inputs.registry-url }}
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

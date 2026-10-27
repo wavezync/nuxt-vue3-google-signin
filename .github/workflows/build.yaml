@@ -1,40 +1,62 @@
-name: Build
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  lint:
+    name: Lint and format
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x, 22.x]
-
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm lint
+      - run: pnpm format:check
+
+  build:
+    name: Typecheck and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm dev:prepare
+      - run: pnpm typecheck
+      - run: pnpm build
+
+  test:
+    name: Test on Nuxt ${{ matrix.nuxt }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        nuxt: [4, 3]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      # Nuxt 3 is where Vite found the library late and loaded it twice (#11);
+      # e2e/consumer.sh runs a fresh app on the same Nuxt version
+      - if: matrix.nuxt == 3
+        run: pnpm --filter e2e add nuxt@3
+      # Builds the module and both fixture apps, then runs Playwright with the
+      # Chrome preinstalled on the runner
+      - run: pnpm test
+      - name: Upload Playwright traces
+        if: failure()
+        uses: actions/upload-artifact@v7
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: Install deps
-        run: npm ci
-
-      - name: Prepare environment
-        run: npm run dev:prepare
-
-      - name: Lint code
-        run: npm run lint
-
-      - name: Build project
-        run: npm run prepack
+          name: playwright-traces-nuxt-${{ matrix.nuxt }}
+          path: e2e/test-results
+          retention-days: 7
+          if-no-files-found: ignore
