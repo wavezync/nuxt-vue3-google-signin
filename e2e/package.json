@@ -1,0 +1,21 @@
+{
+  "name": "e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxi build fixtures/basic && nuxi build fixtures/own-plugin",
+    "typecheck": "nuxi typecheck fixtures/basic",
+    "test": "pnpm build && playwright test"
+  },
+  "dependencies": {
+    "nuxt": "^4.6.2",
+    "nuxt-vue3-google-signin": "workspace:*",
+    "vue": "^3.5.44",
+    "vue3-google-signin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "typescript": "~5.9.3",
+    "vue-tsc": "^3.3.13"
+  }
+}
