@@ -173,8 +173,8 @@ importers:
         specifier: ^6.1.7
         version: 6.1.7
       vue3-google-signin:
-        specifier: ^3.0.0
-        version: 3.0.0(vue@3.5.44(typescript@5.9.3))
+        specifier: ^3.0.1
+        version: 3.0.1(vue@3.5.44(typescript@5.9.3))
     devDependencies:
       '@nuxt/module-builder':
         specifier: ^1.0.3
@@ -216,8 +216,8 @@ importers:
         specifier: ^3.5.44
         version: 3.5.44(typescript@5.9.3)
       vue3-google-signin:
-        specifier: ^3.0.0
-        version: 3.0.0(vue@3.5.44(typescript@5.9.3))
+        specifier: ^3.0.1
+        version: 3.0.1(vue@3.5.44(typescript@5.9.3))
     devDependencies:
       '@playwright/test':
         specifier: ^1.64.1
@@ -4094,8 +4094,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue3-google-signin@3.0.0:
-    resolution: {integrity: sha512-XG+VHA/ZSM1bu11SOVRThZ7akL2KI5mBa2aBtkI4xH+iMjhOEWSyCcs7GYWJM1GRepknfuqhbTJwOJ2kWiVBpw==}
+  vue3-google-signin@3.0.1:
+    resolution: {integrity: sha512-cb9kXe+9IM6AO+kjovzD31ZkgKqZRxfvHHcvGLlgvnCrzGb+rwAbr2VDJMkPpXrjQJf6bRZ4E4acyGfYkl6zYw==}
     peerDependencies:
       vue: ^3
 
@@ -8699,7 +8699,7 @@ snapshots:
       '@vue/language-core': 3.3.13
       typescript: 5.9.3
 
-  vue3-google-signin@3.0.0(vue@3.5.44(typescript@5.9.3)):
+  vue3-google-signin@3.0.1(vue@3.5.44(typescript@5.9.3)):
     dependencies:
       vue: 3.5.44(typescript@5.9.3)
 
