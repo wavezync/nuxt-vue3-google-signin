@@ -1,6 +1,6 @@
 {
   "name": "nuxt-vue3-google-signin",
-  "version": "0.0.13",
+  "version": "1.0.0",
   "description": "Nuxt module for vue3-google-signin: Google Sign-in with Google Identity Services",
   "keywords": [
     "google login",
