@@ -1,6 +1,6 @@
 {
+  "name": "playground",
   "private": true,
-  "name": "my-module-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "nuxt": "^4.1.2"
+    "nuxt": "^4.6.2",
+    "nuxt-vue3-google-signin": "workspace:*"
   }
 }

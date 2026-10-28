@@ -1,92 +1,80 @@
 {
   "name": "nuxt-vue3-google-signin",
   "version": "0.0.13",
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "prepack": "nuxt-module-build build",
-    "dev": "npm run dev:prepare && nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
+  "description": "Nuxt module for vue3-google-signin: Google Sign-in with Google Identity Services",
+  "keywords": [
+    "google login",
+    "google signin",
+    "google-login",
+    "google-signin",
+    "gsi",
+    "nuxt",
+    "nuxt module",
+    "nuxt-module",
+    "nuxt3",
+    "nuxt4",
+    "oauth2",
+    "vue3 google auth",
+    "vue3 google identity services",
+    "vue3 google oauth2",
+    "vue3 google signin",
+    "vue3-google-signin"
+  ],
+  "homepage": "https://vue3-google-signin.wavezync.com",
+  "bugs": {
+    "url": "https://github.com/wavezync/nuxt-vue3-google-signin/issues"
   },
-  "engines": {
-    "node": ">=20.0.0"
+  "license": "MIT",
+  "author": {
+    "name": "Kasun Vithanage",
+    "email": "alankasun@gmail.com",
+    "url": "https://kasvith.me"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wavezync/nuxt-vue3-google-signin.git"
   },
-  "author": {
-    "name": "Kasun Vithanage",
-    "email": "kasun@wavezync.com",
-    "url": "https://kasvith.me"
-  },
-  "homepage": "https://vue3-google-signin.wavezync.com",
-  "bugs": {
-    "url": "https://github.com/wavezync/nuxt-vue3-google-signin/issues"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/module.mjs"
-    }
-  },
-  "main": "./dist/module.mjs",
   "files": [
     "dist"
   ],
-  "keywords": [
-    "nuxt",
-    "nuxt-module",
-    "nuxt module",
-    "nuxt3",
-    "nuxt4",
-    "nuxt3 nuxt4 google signin",
-    "vue3 google signin",
-    "vue3 google oauth2",
-    "vue3 google oauth",
-    "vue3 google auth",
-    "vue3",
-    "google-signin",
-    "google-login",
-    "composables",
-    "vue3-google-login",
-    "vue3-google-signin",
-    "vue3-google-oauth2",
-    "vue3-google-oauth",
-    "vue3-google-auth",
-    "vue3-auth",
-    "google signin",
-    "google login",
-    "oauth2",
-    "gsi",
-    "vue3 google identity services",
-    "vue3 google identity service",
-    "vue3 google identity"
-  ],
+  "type": "module",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "scripts": {
+    "build": "nuxt-module-build build",
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "typecheck": "vue-tsc --noEmit && pnpm --filter e2e typecheck",
+    "test": "pnpm build && pnpm --filter e2e test",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "changelog": "node scripts/changelog.mjs"
+  },
   "dependencies": {
-    "@nuxt/kit": "^4.1.2",
-    "defu": "^6.1.4",
-    "unimport": "^5.3.0",
-    "vue3-google-signin": "latest"
+    "@nuxt/kit": "^4.6.2",
+    "defu": "^6.1.7",
+    "vue3-google-signin": "^3.0.1"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^2.6.3",
-    "@nuxt/eslint-config": "^1.9.0",
-    "@nuxt/module-builder": "latest",
-    "@nuxt/schema": "^4.1.2",
-    "@nuxt/test-utils": "^3.19.2",
-    "@types/node": "latest",
-    "changelogen": "^0.6.2",
-    "eslint": "^9.35.0",
-    "nuxt": "^4.1.2",
-    "typescript": "~5.9.2",
-    "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.6"
-  }
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.6.2",
+    "@types/node": "^22.20.5",
+    "git-cliff": "^2.14.2",
+    "nuxt": "^4.6.2",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
+    "typescript": "~5.9.3",
+    "vue-tsc": "^3.3.13"
+  },
+  "packageManager": "pnpm@12.15.0"
 }

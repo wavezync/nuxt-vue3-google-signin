@@ -1,40 +1,32 @@
-name: NPM Package
+name: Publish to npm
 
 on:
   release:
-    types: [created]
+    types: [published]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+permissions:
+  contents: read
+  # npm trusted publishing: npm trades GitHub's OIDC token for a short-lived
+  # publish token and adds provenance, so no npm token is stored here
+  id-token: write
 
 jobs:
-  build:
+  publish:
+    name: Publish
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
         with:
-          node-version: 20
-          cache: "npm"
-      - run: npm ci
-      - run: npm run dev:prepare
-      - run: npm run lint
-      - run: npm run prepack
-
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
           registry-url: https://registry.npmjs.org/
-          cache: "npm"
-      - run: npm ci
-      - run: npm run dev:prepare
-      - run: npm run prepack
+          # No dependency cache in release builds, as npm recommends
+          cache: ""
+      - run: pnpm lint
+      - run: pnpm dev:prepare
+      - run: pnpm typecheck
+      # Ship only what passes the same tests as CI
+      - run: pnpm test
+      # Trusted publishing needs npm 11.5.1+; Node 24 bundles 11.x. prepack
+      # builds the module again from a clean dist.
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
