@@ -68,12 +68,12 @@
   "devDependencies": {
     "@nuxt/module-builder": "^1.0.3",
     "@nuxt/schema": "^4.6.2",
-    "@types/node": "^22.20.5",
+    "@types/node": "^26.6.5",
     "git-cliff": "^2.14.2",
     "nuxt": "^4.6.2",
     "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0",
-    "typescript": "~5.9.3",
+    "typescript": "~7.0.2",
     "vue-tsc": "^3.3.13"
   },
   "packageManager": "pnpm@12.15.0"
