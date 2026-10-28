@@ -45,6 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
+      - run: pnpm dev:prepare
       # Nuxt 3 is where Vite found the library late and loaded it twice (#11);
       # e2e/consumer.sh runs a fresh app on the same Nuxt version
       - if: matrix.nuxt == 3
